@@ -41,10 +41,10 @@ def list_to_constant(name, shape, data, data_type=None):
 
 
 if __name__ == '__main__':
-    inC = 1
+    inC = 3
     inH = 4
     inW = 4
-    outC = 1
+    outC = 32
     outH = 2
     outW = 2 
     kernelH = 3

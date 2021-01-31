@@ -37,12 +37,12 @@ def im2col_kernel(data, outC, inC, kernelH, kernelW):
     return data_im2col
 
 def main():
-    inC = 1
-    inH = 4
-    inW = 4
-    outC = 1
-    outH = 2
-    outW = 2 
+    inC = 3
+    inH = 40
+    inW = 40
+    outC = 32
+    outH = 38
+    outW = 38
     kernelH = 3
     kernelW = 3
 
