@@ -132,6 +132,8 @@ def conv_winograd_6633(data, kernel):
 
     inN, inC, inH, inW = np.shape(data)
     outC, inC, kernelH, kernelW = np.shape(kernel)
+    outH = inH - kernelH + 1
+    outW = inW - kernelW + 1
 
     print(inN, inC, inH, inW, outC, kernelH, kernelW)
 
@@ -139,18 +141,16 @@ def conv_winograd_6633(data, kernel):
     r = 3
     tailSize = m + r - 1
 
-    # tail个数
-    nbTaiY = math.floor((inH + m-1) / m)
-    nbTaiX = math.floor((inW + m-1) / m)
+    inHPad = math.ceil(outH / m) * m + r -1
+    inWPad = math.ceil(outW / m) * m + r -1
 
-    #tail 输入出大小
+    # tail个数
+    nbTaiY = math.floor(inHPad / 6)
+    nbTaiX = math.floor(inWPad / 6)
+
+    #tail 输入大小
     outHTM = nbTaiY * m
     outWTM = nbTaiX * m
-    outH = inH - kernelH + 1
-    outW = inW - kernelW + 1
-
-    inHPad = nbTaiY * tailSize - (r - 1) * (nbTaiY - 2)
-    inWPad = nbTaiX * tailSize - (r - 1) * (nbTaiX - 2)
 
 
     # step1:对输入做pad
